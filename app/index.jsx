@@ -1,7 +1,8 @@
-import { ImageBackground, Image } from "expo-image";
-import { StyleSheet, Text, View } from "react-native";
-import {Input} from '../components/input/Input'
-import {Botao} from '../components/botao/botao'
+import { Image, ImageBackground } from "expo-image"
+import { ScrollView, StyleSheet, Text, View } from "react-native"
+import { Botao } from '../components/botao/botao'
+import { Card } from '../components/card/card'
+import { Input } from '../components/input/Input'
 
 
 export default function Index() {
@@ -16,24 +17,31 @@ export default function Index() {
       {/* sempre que você colocar uma imagem de fundo use essa tag de cima, o ImagemBackground */}
 
       {/* 2. campo de consulta */}
-      <View style={styles.container}>
+      <ScrollView style={styles.containerScroll}>
+        <View style={styles.container}>
 
-        {/* 2.1 título */}
-        <Text style={styles.titulo}>Consulte seu CEP</Text>
+          {/* 2.1 título */}
+          <Text style={styles.titulo}>Consulte seu CEP</Text>
 
-        {/* 2.2 input */}
-        <Input/>
+          {/* 2.2 input */}
+          <Input />
 
-        {/* 2.3 botão */}
-        <Botao tituloBotao='Consultar' />
+          {/* 2.3 botão */}
+          <Botao tituloBotao='Consultar' onPress={minhaResposta} />
 
-        {/* 2.4 card de informações */}
-      </View>
+          {/* 2.4 card de informações */}
+          <Card />
+
+        </View>
+      </ScrollView>
 
     </>
   );
 }
 
+const minhaResposta = () => {
+  alert("oii")
+}
 //estilos dos meus componentes:
 const styles = StyleSheet.create({
   imgFundo: {
@@ -49,13 +57,19 @@ const styles = StyleSheet.create({
 
   },
   container: {
-    flex: 1.5,
-    alignItems: "center",
-    paddingTop: 50,
-    paddingBottom: 50,
-    gap: 40
+    gap: 40,
+    width: "100%",
+    minHeight: "100%",
+    alignItems: 'center',
+    paddingBottom: 80
   },
   titulo: {
-    fontSize: 25,
+    fontSize: 25
+  },
+  containerScroll: {
+    flex: 1.5,
+    paddingTop: 50,
+    minHeight: '1%',
+    paddingBottom: 50
   }
 })
